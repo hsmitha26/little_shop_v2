@@ -21,11 +21,6 @@ RSpec.describe 'Admin Order Index', type: :feature do
       expect(page).to have_content(order_2.created_at)
       expect(page).to have_content(order_2.id)
       expect(page).to have_content(order_2.status)
-
-
-
     end
   end
-
-
 end
