@@ -56,7 +56,7 @@ create(:fulfilled_order_item, order: order, item: item_2, price_per_item: 2, qua
 # cancelled order
 order = create(:cancelled_order, user: user)
 create(:order_item, order: order, item: item_2, price_per_item: 2, quantity: 1, created_at: (rng.rand(23)+1).hour.ago, updated_at: rng.rand(59).minutes.ago)
-create(:order_item, order: order, item: item_1, price: 3, quantity: 1, created_at: (rng.rand(23)+1).hour.ago, updated_at: rng.rand(59).minutes.ago)
+create(:order_item, order: order, item: item_1, price_per_item: 3, quantity: 1, created_at: (rng.rand(23)+1).hour.ago, updated_at: rng.rand(59).minutes.ago)
 
 
 puts 'seed data finished'
