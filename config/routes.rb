@@ -13,7 +13,8 @@ Rails.application.routes.draw do
 
   # NEW USER REGISTRATION ROUTES
   get '/register', to: "users#new"
-  resources :users, only: [:create]
+  # resources :users, only: [:create]
+  post '/users', to: "users#create", as: :users
 
   # LOGIN/LOGOUT ROUTES
   get '/login', to: "sessions#new"
