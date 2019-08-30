@@ -49,23 +49,29 @@ Rails.application.routes.draw do
   # DASHBOARD ROUTES (AS A MERCHANT)
   scope :dashboard, module: :merchant, as: :merchant do
     get '/', to: "merchants#show", as: :dashboard
-    resources :items, only: [:index, :new, :create, :edit, :update, :destroy]
+    # resources :items, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :items, except: [:show]
     patch '/items/:id/disable', to: "items#disable", as: :disable_item
     patch '/items/:id/enable', to: "items#enable", as: :enable_item
     patch '/order_items/:id/fulfill', to: 'order_items#fulfill', as: :fulfill_item
-    resources :orders, only: :show
+    # resources :orders, only: :show
+    get '/orders/:id', to: "orders#show", as: :order
   end
 
   # ADMIN ROUTES
   namespace :admin do
     get '/dashboard', to: "admins#show"
     patch '/dashboard', to: "admins#ship_order"
-    resources :merchants, only: [:index, :show]
+    # resources :merchants, only: [:index, :show]
+    get '/merchants', to: "merchants#index", as: :merchants
+    get '/merchants/:id', to: "merchants#show", as: :merchant
     patch '/merchants/:id/disable', to: "merchants#disable", as: :disable_merchant
     patch '/merchants/:id/enable', to: "merchants#enable", as: :enable_merchant
     patch '/merchants/:id/downgrade', to: "merchants#downgrade", as: :downgrade_merchant
 
-    resources :users, only: [:index, :show]
+    # resources :users, only: [:index, :show]
+    get '/users', to: "users#index", as: :users
+    get '/users/:id', to: "users#show", as: :user
     patch '/users/:id/upgrade', to: "users#upgrade", as: :upgrade_user
   end
 end
